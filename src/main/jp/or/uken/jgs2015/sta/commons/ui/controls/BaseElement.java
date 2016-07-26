@@ -7,11 +7,13 @@ import org.openqa.selenium.WebElement;
 public class BaseElement {
 	protected WebElement element;
 	protected WebDriver driver;
-	public BaseElement(WebDriver _driver, By by){
+
+	public BaseElement(WebDriver _driver, By by) {
 		driver = _driver;
 		element = driver.findElement(by);
 	}
-	public BaseElement(WebElement _element){
+
+	public BaseElement(WebElement _element) {
 		element = _element;
 	}
 }

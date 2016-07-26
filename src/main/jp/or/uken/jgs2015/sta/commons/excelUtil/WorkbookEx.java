@@ -14,7 +14,8 @@ public class WorkbookEx {
 	protected Workbook book;
 	protected String inputPath;
 
-	public WorkbookEx() {}
+	public WorkbookEx() {
+	}
 
 	public WorkbookEx open(String path) throws Exception {
 		inputPath = path;
@@ -22,36 +23,37 @@ public class WorkbookEx {
 		return this;
 	}
 
-	public void save() throws Exception{
+	public void save() throws Exception {
 		save(false);
 	}
-	public void save(boolean overWrite) throws Exception{
-		if (! overWrite) {
+
+	public void save(boolean overWrite) throws Exception {
+		if (!overWrite) {
 			Utility.renameBeforeOverwrite(inputPath);
 		}
 		book.write(new FileOutputStream(inputPath));
 	}
 
-	public void saveAs(String newFileName) throws Exception{
+	public void saveAs(String newFileName) throws Exception {
 		saveAs(newFileName, false);
 	}
 
-	public void saveAs(String newFileName, boolean overWrite) throws Exception{
-		if (! overWrite) {
+	public void saveAs(String newFileName, boolean overWrite) throws Exception {
+		if (!overWrite) {
 			Utility.renameBeforeOverwrite(newFileName);
 		}
 		book.write(new FileOutputStream(newFileName));
 	}
 
-	public SheetEx getSheet(String name){
+	public SheetEx getSheet(String name) {
 		return new SheetEx(book.getSheet(name));
 	}
 
-	public SheetEx getSheet(String name, int headerRowIndex){
+	public SheetEx getSheet(String name, int headerRowIndex) {
 		return new SheetEx(book.getSheet(name), headerRowIndex);
 	}
 
-	public void close() throws IOException{
+	public void close() throws IOException {
 		book.close();
 	}
 }

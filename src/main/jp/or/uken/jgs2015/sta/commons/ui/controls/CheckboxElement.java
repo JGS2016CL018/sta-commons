@@ -14,19 +14,19 @@ public class CheckboxElement extends ClickableElement {
 		super(_element);
 	}
 
-	public void check(){
-		if (! checked()){
+	public void check() {
+		if (!checked()) {
 			click();
 		}
 	}
 
-	public void uncheck(){
-		if (checked()){
+	public void uncheck() {
+		if (checked()) {
 			click();
 		}
 	}
 
-	public boolean checked(){
+	public boolean checked() {
 		if (element.getAttribute("checked") == null) {
 			return false;
 		}

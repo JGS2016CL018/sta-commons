@@ -12,6 +12,7 @@ public class TextBoxElement extends BaseElement {
 	public String getText() {
 		return element.getText();
 	}
+
 	public void setText(String text) {
 		element.clear();
 		element.sendKeys(text);

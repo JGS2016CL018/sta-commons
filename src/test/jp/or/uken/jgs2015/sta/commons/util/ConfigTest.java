@@ -47,6 +47,7 @@ public class ConfigTest {
 			Files.move(target, source);
 		}
 	}
+
 	@Test
 	public void testConfig() throws IOException {
 		Config config = new Config();
@@ -55,7 +56,8 @@ public class ConfigTest {
 
 	@Test
 	public void testEvidenceSavePath() throws IOException {
-		assertThat(new Config().evidenceSavePath(), is(Paths.get(".\\evidence\\")));
+		assertThat(new Config().evidenceSavePath(),
+				is(Paths.get(".\\evidence\\")));
 	}
 
 }

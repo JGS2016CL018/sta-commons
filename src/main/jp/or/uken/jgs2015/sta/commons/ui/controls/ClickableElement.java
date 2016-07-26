@@ -22,10 +22,10 @@ public class ClickableElement extends BaseElement {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 
-		if (driver instanceof InternetExplorerDriver){
+		if (driver instanceof InternetExplorerDriver) {
 			element.sendKeys(Keys.CONTROL);
 			element.sendKeys(Keys.ENTER);
-		}else{
+		} else {
 			element.click();
 		}
 	}

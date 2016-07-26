@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 public class SelectElement extends BaseElement {
 
 	Select selectElement;
+
 	public SelectElement(WebDriver _driver, By by) {
 		super(_driver, by);
 		selectElement = new Select(element);
@@ -18,13 +19,16 @@ public class SelectElement extends BaseElement {
 		selectElement = new Select(element);
 	}
 
-	public void selectByValue(String value){
-		selectElement.selectByValue(value);;
+	public void selectByValue(String value) {
+		selectElement.selectByValue(value);
+		;
 	}
-	public void selectByIndex(int index){
+
+	public void selectByIndex(int index) {
 		selectElement.selectByIndex(index);
 	}
-	public void selectByVisibleText(String text){
+
+	public void selectByVisibleText(String text) {
 		selectElement.selectByVisibleText(text);
 	}
 }

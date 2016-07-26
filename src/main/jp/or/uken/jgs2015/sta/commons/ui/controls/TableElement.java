@@ -15,7 +15,7 @@ public class TableElement extends BaseElement {
 
 	public List<TableRowElement> rows() {
 		List<TableRowElement> _rows = new ArrayList<TableRowElement>();
-		for(WebElement row : element.findElements(By.tagName("TR"))) {
+		for (WebElement row : element.findElements(By.tagName("TR"))) {
 			_rows.add(new TableRowElement(row));
 		}
 		return _rows;
@@ -25,9 +25,9 @@ public class TableElement extends BaseElement {
 		StringBuilder buf = new StringBuilder();
 
 		int r = 0;
-		for(TableRowElement row : rows()) {
+		for (TableRowElement row : rows()) {
 			int c = 0;
-			for(WebElement column : row.columns()) {
+			for (WebElement column : row.columns()) {
 				buf.append("cell(" + r + ", " + c + ")=");
 				buf.append("[" + column.getText() + "]\n");
 				c++;

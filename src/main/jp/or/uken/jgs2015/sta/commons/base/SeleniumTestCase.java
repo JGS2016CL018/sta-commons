@@ -22,7 +22,10 @@ public class SeleniumTestCase {
 	public static void beforeClass() throws Exception {
 		config = new Config();
 		initDriver();
-		driver.manage().timeouts().implicitlyWait(config.defaultTimeOutSeconds(), TimeUnit.SECONDS);
+		driver.manage()
+				.timeouts()
+				.implicitlyWait(config.defaultTimeOutSeconds(),
+						TimeUnit.SECONDS);
 	}
 
 	@AfterClass
@@ -34,15 +37,18 @@ public class SeleniumTestCase {
 		}
 	}
 
-	private static void initDriver() throws IOException{
-		switch(config.browserName()){
+	private static void initDriver() throws IOException {
+		switch (config.browserName()) {
 		case "Firefox":
 			driver = new FirefoxDriver();
 		case "InternetExplorer":
 			System.setProperty("webdriver.ie.driver", config.ieDriverPath());
 			driver = new InternetExplorerDriver();
 		}
-		driver.manage().timeouts().implicitlyWait(config.defaultTimeOutSeconds(), TimeUnit.SECONDS);
+		driver.manage()
+				.timeouts()
+				.implicitlyWait(config.defaultTimeOutSeconds(),
+						TimeUnit.SECONDS);
 	}
 
 }

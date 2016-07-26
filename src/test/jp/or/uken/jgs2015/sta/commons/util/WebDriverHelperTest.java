@@ -14,11 +14,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class WebDriverHelperTest {
-    private WebDriver driver;
-    private String baseUrl;
+	private WebDriver driver;
+	private String baseUrl;
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Before
 	public void setUp() {
@@ -29,12 +29,14 @@ public class WebDriverHelperTest {
 	}
 
 	private void setUpDriver() {
-	    System.setProperty("webdriver.ie.driver", "C:/selenium/IEDriverServer.exe");
-	    driver = new InternetExplorerDriver();
-	    baseUrl = "https://www.google.co.jp/";
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    driver.get(baseUrl);
+		System.setProperty("webdriver.ie.driver",
+				"C:/selenium/IEDriverServer.exe");
+		driver = new InternetExplorerDriver();
+		baseUrl = "https://www.google.co.jp/";
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get(baseUrl);
 	}
+
 	public void tearDownDriver() {
 		driver.quit();
 	}
@@ -45,9 +47,11 @@ public class WebDriverHelperTest {
 
 		WebDriverHelper driverHelper = new WebDriverHelper(driver);
 
-		String windowID = driverHelper.getWindowHandleByUrl("http://www.google.co.jp");
+		String windowID = driverHelper
+				.getWindowHandleByUrl("http://www.google.co.jp");
 		assertThat(windowID, nullValue());
-		String windowID2 = driverHelper.getWindowHandleByUrl("https://www.google.co.jp");
+		String windowID2 = driverHelper
+				.getWindowHandleByUrl("https://www.google.co.jp");
 		assertThat(windowID2, notNullValue());
 
 		tearDownDriver();

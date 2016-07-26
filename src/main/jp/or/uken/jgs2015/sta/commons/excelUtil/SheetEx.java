@@ -19,63 +19,58 @@ public class SheetEx implements Iterator<Row>, Iterable<Row> {
 	public SheetEx(Sheet _sheet) {
 		sheet = _sheet;
 	}
+
 	public SheetEx(Sheet _sheet, int headerRowIndex) {
 		sheet = _sheet;
 		setColumnNamesByHeaderRow(headerRowIndex);
 	}
 
-	public void setColumnNames(HashMap<String, Integer> _columnNamesMap){
+	public void setColumnNames(HashMap<String, Integer> _columnNamesMap) {
 		columnNamesMap = _columnNamesMap;
 		columnNames = new DualHashBidiMap<String, Integer>(columnNamesMap);
 	}
 
-	public void setColumnNamesByHeaderRow(int _headerRowIndex){
+	public void setColumnNamesByHeaderRow(int _headerRowIndex) {
 		headerRowIndex = _headerRowIndex;
 		Row headerRow = sheet.getRow(headerRowIndex);
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		for (Cell cell : headerRow){
-			map.put(cells(headerRow, cell.getColumnIndex()).getValue(), cell.getColumnIndex());
+		for (Cell cell : headerRow) {
+			map.put(cells(headerRow, cell.getColumnIndex()).getValue(),
+					cell.getColumnIndex());
 		}
 		setColumnNames(map);
 	}
 
-	public CellEx cells(int row, int column)
-	{
+	public CellEx cells(int row, int column) {
 		return cells(sheet.getRow(row), column);
 	}
 
-	public CellEx cells(int row, String columnName)
-	{
+	public CellEx cells(int row, String columnName) {
 		return cells(row, getColumnIndexByName(columnName));
 	}
 
-	public CellEx cells(Row row, int column)
-	{
+	public CellEx cells(Row row, int column) {
 		return new CellEx(row, column);
 	}
 
-	public CellEx cells(Row row, String columnName)
-	{
+	public CellEx cells(Row row, String columnName) {
 		return cells(row, getColumnIndexByName(columnName));
 	}
 
-	protected int getColumnIndexByName(String columnName)
-	{
+	protected int getColumnIndexByName(String columnName) {
 		return columnNames.get(columnName);
 	}
 
-	protected String getColumnNameByIndex(int columnIndex)
-	{
+	protected String getColumnNameByIndex(int columnIndex) {
 		return columnNames.getKey(columnIndex);
 	}
 
-	public boolean isHeader(Row row)
-	{
-		return (row.getRowNum()==headerRowIndex);
+	public boolean isHeader(Row row) {
+		return (row.getRowNum() == headerRowIndex);
 	}
-	public boolean isBody(Row row)
-	{
-		return (row.getRowNum()>headerRowIndex);
+
+	public boolean isBody(Row row) {
+		return (row.getRowNum() > headerRowIndex);
 	}
 
 	@Override

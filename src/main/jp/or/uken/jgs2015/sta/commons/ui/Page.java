@@ -39,9 +39,9 @@ public abstract class Page {
 	}
 
 	public void close() {
-		if (activate() != null){
+		if (activate() != null) {
 			driver.close();
-			for (String windowID : driver.getWindowHandles()){
+			for (String windowID : driver.getWindowHandles()) {
 				driver.switchTo().window(windowID);
 				return;
 			}
@@ -49,17 +49,20 @@ public abstract class Page {
 	}
 
 	public abstract Page activate();
+
 	public abstract boolean verify();
+
 	public abstract boolean exists();
 
 	public void waitForLoading() {
 		waits().until(new ExpectedPageCondition(this));
 	}
+
 	public void waitForPopup() {
 		waits().until(new ExpectedPopupWindowCondition(this));
 	}
 
-	public WebDriverWait waits(){
+	public WebDriverWait waits() {
 		return new WebDriverWait(driver, defaultTimeOutSeconds);
 	}
 
@@ -72,30 +75,29 @@ public abstract class Page {
 	}
 
 	// Elements
-	public TextBoxElement findTextBoxElement(By by){
+	public TextBoxElement findTextBoxElement(By by) {
 		return new TextBoxElement(driver, by);
 	}
 
-	public ButtonElement findButtonElement(By by){
+	public ButtonElement findButtonElement(By by) {
 		return new ButtonElement(driver, by);
 	}
 
-	public LinkElement findLinkElement(By by){
+	public LinkElement findLinkElement(By by) {
 		return new LinkElement(driver, by);
 	}
 
-	public CheckboxElement findCheckboxElement(By by){
+	public CheckboxElement findCheckboxElement(By by) {
 		return new CheckboxElement(driver, by);
 	}
 
-	public SelectElement findSelectElement(By by){
+	public SelectElement findSelectElement(By by) {
 		return new SelectElement(driver, by);
 	}
 
-	public RadioButtonElement findRadioButtonElement(By by){
+	public RadioButtonElement findRadioButtonElement(By by) {
 		return new RadioButtonElement(driver, by);
 	}
-
 
 	protected boolean isElementPresent(By by) {
 		try {

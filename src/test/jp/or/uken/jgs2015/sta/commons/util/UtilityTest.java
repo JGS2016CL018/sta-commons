@@ -18,11 +18,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class UtilityTest {
-    private WebDriver driver;
-    private String baseUrl;
+	private WebDriver driver;
+	private String baseUrl;
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Before
 	public void setUp() {
@@ -33,12 +33,14 @@ public class UtilityTest {
 	}
 
 	private void setUpDriver() {
-	    System.setProperty("webdriver.ie.driver", "C:/selenium/IEDriverServer.exe");
-	    driver = new InternetExplorerDriver();
-	    baseUrl = "https://www.google.co.jp/";
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    driver.get(baseUrl);
+		System.setProperty("webdriver.ie.driver",
+				"C:/selenium/IEDriverServer.exe");
+		driver = new InternetExplorerDriver();
+		baseUrl = "https://www.google.co.jp/";
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get(baseUrl);
 	}
+
 	public void tearDownDriver() {
 		driver.quit();
 	}
@@ -67,7 +69,8 @@ public class UtilityTest {
 
 		// ファイルが存在しない場合は空振り
 		assertThat(Files.exists(baseFile), is(false));
-		assertThat(Utility.renameBeforeOverwrite(baseFile.toString()), nullValue());
+		assertThat(Utility.renameBeforeOverwrite(baseFile.toString()),
+				nullValue());
 		assertThat(Files.exists(baseFile), is(false));
 
 		// ファイルが存在する場合はリネーム（リネーム後に同名のファイルが存在しない）
@@ -84,8 +87,10 @@ public class UtilityTest {
 
 	@Test
 	public void testGFormatedDate() throws IOException {
-		assertThat(Utility.getFormatedDate(LocalDateTime.of(2016, 7, 31, 14, 25, 36, 789000000)), is("20160731142536789"));
-		assertThat(Utility.getFormatedDate(LocalDateTime.of(2016, 7, 31, 14, 25, 36, 789000000)), not("20160731142537789"));
+		assertThat(Utility.getFormatedDate(LocalDateTime.of(2016, 7, 31, 14,
+				25, 36, 789000000)), is("20160731142536789"));
+		assertThat(Utility.getFormatedDate(LocalDateTime.of(2016, 7, 31, 14,
+				25, 36, 789000000)), not("20160731142537789"));
 	}
 
 	@Test
